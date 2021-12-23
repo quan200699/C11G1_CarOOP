@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="car.js"></script>
+    <script src="obstacle.js"></script>
+</head>
+<body>
+<canvas height="768" id="myCanvas" style="border: solid 1px" width="1368"></canvas>
+<script>
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext('2d');
+    let myCar = new Car(100, 50, 150, 100, 30, 'img/car.png');
+    let obstacle = new Obstacle(100, 10, 50, 50);
+    myCar.drawCar(ctx);
+    obstacle.drawObstacle(ctx);
+
+    function moveCar(event) {
+        switch (event.keyCode) {
+            case 37: {
+                // myCar.src = 'img/image_1'; Nếu muốn thay ảnh khi ấn nút
+                myCar.moveLeft();
+                break;
+            }
+            case 39: {
+                // myCar.src = 'img/image_2';
+                myCar.moveRight();
+                break
+            }
+            case 38: {
+                myCar.moveUp();
+                break;
+            }
+            case 40: {
+                myCar.moveDown();
+                break;
+            }
+            case 32: {
+                myCar.upSpeed();
+                break;
+            }
+        }
+        updateCanvas();
+    }
+
+    function clearCanvas() {
+        ctx.clearRect(0, 0, 1368, 768);
+    }
+
+    function moveObstacle() {
+        if (obstacle._y > canvas.clientHeight){
+            obstacle._y = 0;
+        }
+        obstacle.moveDown();
+        updateCanvas();
+    }
+
+    function updateCanvas() {
+        clearCanvas();
+        obstacle.drawObstacle(ctx);
+        myCar.drawCar(ctx);
+    }
+
+    setInterval(moveObstacle, 100);
+
+
+    document.addEventListener('keydown', moveCar);
+</script>
+</body>
+</html>
