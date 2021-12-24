@@ -84,9 +84,9 @@ class Car {
     drawCar(ctx) {
         let image = new Image();
         image.src = this._src;
-        image.onload = () => { //Hiểu là 1 cú pháp khai báo hàm
+        // image.onload = () => { //Hiểu là 1 cú pháp khai báo hàm
             ctx.drawImage(image, this._x, this._y, this._width, this._height);
-        }
+        // }
     }
 
     upSpeed() {

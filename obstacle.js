@@ -45,7 +45,7 @@ class Obstacle { //Chướng ngại vật
     }
 
     moveDown() {
-        this._y += 20;
+        this._y += 5;
     }
 
     drawObstacle(ctx) {
